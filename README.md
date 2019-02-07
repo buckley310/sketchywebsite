@@ -1,2 +1,2 @@
-# sketchywebsite
-The source for https://sketchywebsite.net
+# Sketchy Website
+The source code for https://sketchywebsite.net
