@@ -14,12 +14,41 @@
             width: 100%;
             height: 100%;
         }
+
+        /* loading animation */
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: solid;
+            border-radius: 50%;
+            border-color: transparent;
+            animation: loader 50s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes loader {
+            1% {
+                border-color: transparent;
+                transform: rotate(0deg);
+            }
+
+            2% {
+                border-color: transparent #888;
+            }
+
+            100% {
+                transform: rotate(9000deg);
+            }
+        }
     </style>
 </head>
 
 <body>
+    <div id="loading" style="text-align:center;padding:50px;">
+        <div id="spinner" class="loader"></div>
+    </div>
     <canvas id="canvas"></canvas>
-    <script src="static/script.js" async></script>
+    <script src="static/script.js?v1" async></script>
 
     <div style="display:none;">
         <audio id="snd0" src="static/snd_0.mp3" controls></audio>

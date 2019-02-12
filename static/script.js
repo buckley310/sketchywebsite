@@ -94,6 +94,7 @@ function mainloop() {
 
 // initialize all the things
 function sw_init() {
+    document.getElementById('loading').style = 'display:none;';
     canvas = document.getElementById('canvas');
     canvas_ctx = canvas.getContext("2d");
     window.addEventListener('resize', setsize);
