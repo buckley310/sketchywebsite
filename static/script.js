@@ -14,18 +14,20 @@ function setsize() {
 
 // grab a 100-pixel-tall horizontal strip and move it left or right by 50px
 function effect_tearing() {
-    var pos_y = parseInt(Math.random() * (win_height - 100));
+    for (let i = 0; i < 5; i++) {
+        var pos_y = parseInt(Math.random() * (win_height - 100));
 
-    canvas_ctx.drawImage(
-        canvas,
-        0,
-        pos_y,
-        win_width,
-        100,
-        (parseInt(Math.random() * 2) * 100) - 50, // (+/-)50
-        pos_y,
-        win_width,
-        100);
+        canvas_ctx.drawImage(
+            canvas,
+            0,
+            pos_y,
+            win_width,
+            100,
+            (parseInt(Math.random() * 2) * 100) - 50, // (+/-)50
+            pos_y,
+            win_width,
+            100);
+    }
 }
 
 // add a random image to the canvas
