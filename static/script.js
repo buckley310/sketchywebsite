@@ -88,7 +88,7 @@ function mainloop() {
 
     add_image();
 
-    // Browsers are mean and usually doesn't let us autoplay sound anymore :(
+    // Browsers are mean and usually don't let us autoplay sound anymore :(
     do_sound();
     // Fun fact, trying to use HTML5 audio causes the do_sound function
     // to crash when run in IE in "N" editions of windows.
