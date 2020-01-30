@@ -1,12 +1,12 @@
 // globals
-var canvas;
-var canvas_ctx;
-var win_height;
-var win_width;
-var hanger;
-var hanger_pos = 256;
-var hanger_width;
-var hanger_height;
+let canvas;
+let canvas_ctx;
+let win_height;
+let win_width;
+let hanger;
+let hanger_pos = 256;
+let hanger_width;
+let hanger_height;
 
 // resize the canvas to match the window
 function setsize() {
@@ -19,7 +19,7 @@ function setsize() {
 // grab a 100-pixel-tall horizontal strip and move it left or right by 50px
 function effect_tearing() {
     for (let i = 0; i < 5; i++) {
-        var pos_y = parseInt(Math.random() * (win_height - 100));
+        let pos_y = parseInt(Math.random() * (win_height - 100));
 
         canvas_ctx.drawImage(
             canvas,
@@ -36,7 +36,7 @@ function effect_tearing() {
 
 // add a random image to the canvas
 function add_image() {
-    var rnd_pic = document.getElementById('pic' + parseInt(Math.random() * 18));
+    let rnd_pic = document.getElementById('pic' + parseInt(Math.random() * 18));
 
     canvas_ctx.drawImage(
         rnd_pic,
@@ -46,7 +46,7 @@ function add_image() {
 
 // rewind and play one of the audio elements
 function do_sound() {
-    var rnd_snd = document.getElementById('snd' + parseInt(Math.random() * 7));
+    let rnd_snd = document.getElementById('snd' + parseInt(Math.random() * 7));
     rnd_snd.currentTime = 0;
     rnd_snd.play();
 }
@@ -62,7 +62,7 @@ function screen_shake() {
 // draw vertical lines of "dead pixels" (currently unused)
 function vertline() {
 
-    var base_x = parseInt(Math.random() * (win_width - 10));
+    let base_x = parseInt(Math.random() * (win_width - 10));
 
     for (let i = 0; i < 10; i++) {
         canvas_ctx.strokeStyle = 'rgb(' +
