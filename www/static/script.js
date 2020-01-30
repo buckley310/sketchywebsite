@@ -114,7 +114,7 @@ function show_doorhanger() {
         addEventListener("mousemove", on_mouse_move);
         addEventListener("mouseout", function (e) {
             if (!(e.relatedTarget || e.toElement))
-                on_mouse_move({ clientY: 9999 });
+                hanger.style.top = '4px';
         });
         addEventListener('resize', function () {
             hanger_pos = Math.max(0, Math.min(hanger_pos, window.innerWidth - hanger_width));
@@ -126,7 +126,10 @@ function show_doorhanger() {
 // make the doorhanger run away
 function on_mouse_move(e) {
     if (hanger_width * 2 > window.innerWidth) {
-        hanger.style.top = Math.min(4, e.clientY - hanger_height - 10) + 'px';
+        if (e.clientX > hanger_pos && e.clientX < hanger_pos + hanger_width)
+            hanger.style.top = Math.min(4, e.clientY - hanger_height - 10) + 'px';
+        else
+            hanger.style.top = '4px';
     } else {
         hanger.style.top = '4px';
         if (e.clientY - 10 < hanger_height) {
