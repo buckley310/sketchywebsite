@@ -3,6 +3,10 @@ var canvas;
 var canvas_ctx;
 var win_height;
 var win_width;
+var hanger;
+var hanger_pos = 256;
+var hanger_width;
+var hanger_height;
 
 // resize the canvas to match the window
 function setsize() {
@@ -94,6 +98,60 @@ function mainloop() {
     // to crash when run in IE in "N" editions of windows.
 }
 
+// create notification doorhanger
+function show_doorhanger() {
+    hanger = document.getElementById('doorhanger');
+
+    if (navigator.userAgent.includes('Firefox'))
+        hanger.src = "static/doorhanger_firefox.png";
+    else
+        hanger.src = "static/doorhanger_chromium.png";
+
+    hanger.addEventListener('load', function () {
+        hanger.classList.add('hanger_enter');
+        hanger_width = hanger.width;
+        hanger_height = hanger.height;
+        addEventListener("mousemove", on_mouse_move);
+        addEventListener("mouseout", function (e) {
+            if (!(e.relatedTarget || e.toElement))
+                on_mouse_move({ clientY: 9999 });
+        });
+        addEventListener('resize', function () {
+            hanger_pos = Math.max(0, Math.min(hanger_pos, window.innerWidth - hanger_width));
+            hanger.style.left = hanger_pos + 'px';
+        });
+    });
+}
+
+// make the doorhanger run away
+function on_mouse_move(e) {
+    if (hanger_width * 2 > window.innerWidth) {
+        hanger.style.top = Math.min(4, e.clientY - hanger_height - 10) + 'px';
+    } else {
+        hanger.style.top = '4px';
+        if (e.clientY - 10 < hanger_height) {
+            if (e.clientX > hanger_pos && e.clientX < hanger_pos + hanger_width) {
+                // if the hanger is pinned on the left
+                if (e.clientX < hanger_width) {
+                    hanger_pos = e.clientX;
+                    hanger.style.left = hanger_pos + 'px';
+                }
+                // if the hanger is pinned on the right
+                else if (e.clientX > window.innerWidth - hanger_width) {
+                    hanger_pos = e.clientX - hanger_width;
+                    hanger.style.left = hanger_pos + 'px';
+                }
+                // if the hanger is in the middle of the screen
+                else {
+                    hanger_pos = e.clientX - ((e.clientX - hanger_pos < hanger_width / 2) ? 0 : hanger_width);
+                    hanger.style.left = hanger_pos + 'px';
+                }
+
+            }
+        }
+    }
+}
+
 // initialize all the things
 function sw_init() {
     document.getElementById('loading').style = 'display:none;';
@@ -102,6 +160,7 @@ function sw_init() {
     window.addEventListener('resize', setsize);
     setsize();
     window.setInterval(mainloop, 100);
+    window.setTimeout(show_doorhanger, 2000);
 }
 
 window.addEventListener('load', sw_init);

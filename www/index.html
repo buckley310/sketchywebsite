@@ -40,6 +40,26 @@
                 transform: rotate(9000deg);
             }
         }
+
+        #doorhanger {
+            position: fixed;
+            top: 4px;
+            left: 256px;
+        }
+
+        .hanger_enter {
+            animation: 200ms ease-out 0s 1 hanger_enter;
+        }
+
+        @keyframes hanger_enter {
+            0% {
+                transform: translateY(-100%);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 
@@ -48,6 +68,7 @@
         <div id="spinner" class="loader"></div>
     </div>
     <canvas id="canvas"></canvas>
+    <img id="doorhanger">
     <script src="static/script.js?v1" async></script>
 
     <div style="display:none;">
