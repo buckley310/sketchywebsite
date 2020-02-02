@@ -1,4 +1,5 @@
 // globals
+let bequiet;
 let canvas;
 let canvas_ctx;
 let win_height;
@@ -92,10 +93,7 @@ function mainloop() {
 
     add_image();
 
-    // Browsers are mean and usually don't let us autoplay sound anymore :(
-    do_sound();
-    // Fun fact, trying to use HTML5 audio causes the do_sound function
-    // to crash when run in IE in "N" editions of windows.
+    if (!bequiet) do_sound();
 }
 
 // create notification doorhanger
@@ -157,6 +155,7 @@ function on_mouse_move(e) {
 
 // initialize all the things
 function sw_init() {
+    bequiet = document.cookie.split('; ').includes('bequiet=yes');
     document.getElementById('loading').style = 'display:none;';
     canvas = document.getElementById('canvas');
     canvas_ctx = canvas.getContext("2d");
