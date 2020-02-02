@@ -112,9 +112,9 @@ function show_doorhanger() {
     hanger = document.getElementById('doorhanger');
 
     if (navigator.userAgent.includes('Firefox'))
-        hanger.src = "static/doorhanger_firefox.png";
+        hanger.src = "img/doorhanger_firefox.png";
     else
-        hanger.src = "static/doorhanger_chromium.png";
+        hanger.src = "img/doorhanger_chromium.png";
 
     hanger.addEventListener('load', function () {
         hanger.classList.add('hanger_enter');
