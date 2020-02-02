@@ -60,6 +60,14 @@ function screen_shake() {
     }, 50);
 }
 
+// temporarily tilt the screen
+function screen_tilt() {
+    canvas.style.transform = 'rotate(' + parseInt(Math.random() * 360) + 'deg)';
+    setTimeout(function () {
+        canvas.style.transform = '';
+    }, 50);
+}
+
 // draw vertical lines of "dead pixels" (currently unused)
 function vertline() {
 
@@ -90,6 +98,9 @@ function mainloop() {
 
     if (Math.random() < 0.05)
         screen_shake();
+
+    if (Math.random() < 0.05)
+        screen_tilt();
 
     add_image();
 
