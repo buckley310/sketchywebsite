@@ -158,7 +158,6 @@ function on_mouse_move(e) {
                     hanger_pos = e.clientX - ((e.clientX - hanger_pos < hanger_width / 2) ? 0 : hanger_width);
                     hanger.style.left = hanger_pos + 'px';
                 }
-
             }
         }
     }
