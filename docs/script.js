@@ -1,5 +1,4 @@
 // globals
-let bequiet;
 let canvas;
 let canvas_ctx;
 let win_height;
@@ -104,7 +103,7 @@ function mainloop() {
 
     add_image();
 
-    if (!bequiet) do_sound();
+    do_sound();
 }
 
 // create notification doorhanger
@@ -165,7 +164,6 @@ function on_mouse_move(e) {
 
 // initialize all the things
 function sw_init() {
-    bequiet = document.cookie.split('; ').includes('bequiet=yes');
     document.getElementById('loading').style = 'display:none;';
     canvas = document.getElementById('canvas');
     canvas_ctx = canvas.getContext("2d");
